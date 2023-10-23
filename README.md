@@ -1,1 +1,1 @@
-My new website has been moved to [here](https://wjiawei.com).
+My new website has been moved [here](https://wjiawei.com).
