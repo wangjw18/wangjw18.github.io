@@ -10,6 +10,61 @@
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     
+    <style>
+      :root {
+        --paper-media-width: 25%;  /* 论文左边视频/图片区域宽度 */
+        --paper-text-width: 75%;   /* 论文右边文本区域宽度 */
+      }
+      
+      .paper-media-cell {
+        padding: 16px;
+        width: var(--paper-media-width);
+        vertical-align: middle;
+      }
+      
+      .paper-text-cell {
+        padding: 8px;
+        width: var(--paper-text-width);
+        vertical-align: middle;
+      }
+      
+      .category-header {
+        cursor: pointer;
+        user-select: none;
+        padding: 16px;
+        background-color: #e9ecef;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        margin: 10px 0;
+        transition: background-color 0.2s ease;
+      }
+      
+      .category-header::before {
+        content: "▶ ";
+        display: inline-block;
+      }
+      
+      .category-header.expanded::before {
+        content: "▼ ";
+      }
+      
+      .category-papers {
+        display: none;
+      }
+      
+      .category-papers.expanded {
+        display: block;
+      }
+      
+      .category-papers.default-expanded {
+        display: block;
+      }
+      
+      .category-header.default-expanded::before {
+        content: "▼ ";
+      }
+    </style>
+    
   </head>
 
   <body>
@@ -26,7 +81,7 @@
 		I am currently a Lecturer in the Department of Civil and Environmental Engineering at the University of Michigan, Ann Arbor, and a Postdoctoral Research Fellow in the <a href="https://traffic.engin.umich.edu/">Mobility Transformation Lab</a>, working with <a href="https://traffic.engin.umich.edu/">Prof. Henry X. Liu</a>. 
     </p>
     <p></p>
-    I received my Ph.D. degree in Mechanical Engineering at <a href="https://www.tsinghua.edu.cn/publish/thu2018en/index.html">Tsinghua University</a> in 2023, advised by <a href="https://scholar.google.com/citations?user=x58fnLQAAAAJ&hl=en&oi=ao">Prof. Keqiang Li</a>, and my Bachelor's Degree in Automotive Engineering at Tsinghua University in 2018. From Dec 2022 to Dec 2023, I was a visiting PhD student in the <a href="https://www.epfl.ch/labs/la/">Automatic Control Laboratory</a> at <a href="https://www.epfl.ch/en/">EPFL</a> (École Polytechnique Fédérale de Lausanne), advised by <a href="https://people.epfl.ch/colin.jones">Prof. Colin Jones</a>.
+    I received my Ph.D. degree in Mechanical Engineering at <a href="https://www.tsinghua.edu.cn/publish/thu2018en/index.html">Tsinghua University</a> in 2023, advised by <a href="https://scholar.google.com/citations?user=x58fnLQAAAAJ&hl=en&oi=ao">Prof. Keqiang Li</a>, and my Bachelor's Degree in Automotive Engineering at Tsinghua University in 2018. From Dec 2022 to Dec 2023, I was a visiting PhD student in the <a href="https://www.epfl.ch/labs/la/">Automatic Control Laboratory</a> at <a href="https://www.epfl.ch/en/">EPFL</a> (École Polytechnique Fédérale de Lausanne), advised by <a href="https://people.epfl.ch/colin.jones">Prof. Colin Jones</a>. During my doctoral research, I also received guidance from <a href="https://zhengy09.github.io/">Prof. Yang Zheng</a> at UC San Diego.
                 </p>
                 <!-- <p>
     I received the Outstanding Ph.D. Graduate, the Excellent Doctoral Dissertation Award, and the National Scholarship from <a href="https://www.tsinghua.edu.cn/publish/thu2018en/index.html">Tsinghua University</a>. I was the recipient of Beijing 2024 Outstanding Doctoral Dissertation Award, the Distinguished Doctoral Dissertation Award from <a href="https://www.sae-china.org/">China Society of Automotive Engineers (China SAE)</a> in 2023, the Annual Best Paper Award for <a href="http://www.jtxa.net/indexen.htm">the Journal of Transport Information and Safety</a> in 2021, and the Best Paper Award at <a href="http://www.cota-home.org/CICTP_Default.html">the 18th COTA International Conference of Transportation Professionals</a> in 2018.
@@ -42,20 +97,11 @@
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/bio/jiawei_bio1.jpg"><img style="width:80%;max-width:80%;object-fit: cover;" alt="profile photo" src="images/bio/jiawei_bio1.jpg" class="hoverZoomLink"></a>
+                <a href="images/bio/jiawei_bio3.jpg"><img style="width:80%;max-width:80%;object-fit: cover;" alt="profile photo" src="images/bio/jiawei_bio3.jpg" class="hoverZoomLink"></a>
               </td>
             </tr>
           </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Research</heading>
-                <p>
-                  My research interests lie at the intersection of learning, optimization, control, and simulation for urban mobility systems, with a particular emphasis on Connected and Automated Vehicles (CAVs). I aim to advance CAVs' safety through high-fidelity simulation and advanced testing, while also pursuing reliable and scalable data-driven control strategies that promote broader societal and environmental benefits. 
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+        
           
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
@@ -63,7 +109,7 @@
                 <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">News</heading>
                 <ul style="margin:0;padding-left:20px;margin-top:10px;margin-bottom:0;">
                   <li style="margin-bottom:0;margin-top:0;"><strong>09/2025：</strong> Check our new preprint on <a href="https://arxiv.org/abs/2509.13164">TeraSim-World</a>. Codes and videos are available <a href="https://wjiawei.com/terasim-world-web/">here</a>.</li>
-                  <li style="margin-bottom:0;margin-top:0;"><strong>08/2025：</strong> Excited to begin my new role as a Lecturer in the CEE Department at University of Michigan!</li>
+                  <li style="margin-bottom:0;margin-top:0;"><strong>08/2025：</strong> <span style="color:red;">Excited to begin my new role as a Lecturer in the CEE Department at University of Michigan!</span></li>
                   <li style="margin-bottom:0;margin-top:0;"><strong>07/2025：</strong> Our <a href="https://arxiv.org/abs/2505.03178">paper</a> about risk-adjustable driving environment by conditional diffusion was accepted by ITSC 2025.</li>
                   <li style="margin-bottom:0;margin-top:0;"><strong>05/2025：</strong> Check our new preprint on generative behavior simulation for Autonomous Vehicles: <a href="https://arxiv.org/abs/2503.03629">TeraSim</a>.</li>
                   <li style="margin-bottom:0;margin-top:0;"><strong>12/2024：</strong> I was awarded Beijing 2024 Outstanding Doctoral Dissertation Award!</li>
@@ -76,206 +122,523 @@
                   <li style="margin-bottom:0;margin-top:0;"><strong>10/2023：</strong> I was awarded the Distinguished Doctoral Dissertation Award from <a href="https://www.sae-china.org/">China SAE</a>.</li>
                   <li style="margin-bottom:0;margin-top:0;"><strong>09/2023：</strong> Excited to start my new position as Postdoctoral Research Fellow in the <a href="https://traffic.engin.umich.edu/">Michigan Traffic Lab</a>!</li>
                 </ul>
-              </td>
-            </tr>
+      </td>
+    </tr>
           </tbody></table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:16px;width:100%;vertical-align:middle">
+              <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Research</heading>
+              <p>
+                My research interests lie at the intersection of learning, optimization, control, and simulation for urban mobility systems, with a particular emphasis on Connected and Automated Vehicles (CAVs). Precisely, I aim to advance CAVs' safety through high-fidelity simulation and advanced testing, while also pursuing reliable and scalable data-driven control strategies that promote broader societal and environmental benefits. 
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
           
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Selected Publications</heading>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr>
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <video width=100% height=100% muted autoplay loop>
-          <source src="images/terasim-world.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
       </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://wjiawei.com/terasim-world-web/">
-          <span class="papertitle">TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving</span>
+    </tr>
+          </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr>
+      <td colspan="2" class="category-header default-expanded" onclick="toggleCategory('generative-simulation')">
+        <strong>Generative Simulation for Autonomous Driving</strong>
+      </td>
+    </tr>
+    </tbody></table>
+    
+    <div id="generative-simulation" class="category-papers default-expanded">
+      <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <tr style="background-color: #fff9df;">
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/terasim-world.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td class="paper-text-cell">
+            <a href="https://wjiawei.com/terasim-world-web/">
+              <span class="papertitle">TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving</span>
+            </a>
+            <br>
+            <strong>Jiawei Wang</strong>†,
+            Haowei Sun†,
+            <a href="https://www.civil.hku.hk/pp-yanxt.html">Xintao Yan</a>,
+            <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Shuo Feng</a>,
+            <a href="https://www.cs.toronto.edu/~jungao/">Jun Gao</a>,
+            Henry X. Liu
+            <br>
+            <em>Preprint</em>, 2025
+            <br>
+            <a href="https://wjiawei.com/terasim-world-web/">project page</a>
+            /
+            <a href="https://arxiv.org/abs/2509.13164">arXiv</a>
+            <p></p>
+            <p>
+            An automated pipeline for synthesizing safety-critical data for safe and scalable deployment of end-to-end autonomous driving at anywhere in the world.
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/rade.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td class="paper-text-cell">
+            <a href="https://arxiv.org/abs/2505.03178">
+              <span class="papertitle">RADE: Learning Risk-Adjustable Driving Environment via Multi-Agent Conditional Diffusion</span>
+            </a>
+            <br>
+            <strong>Jiawei Wang</strong>,
+            <a href="https://www.civil.hku.hk/pp-yanxt.html">Xintao Yan</a>,
+            <a href="https://yaomarkmu.github.io/">Yao Mu</a>,
+            Haowei Sun,
+            Zhong Cao,
+            Henry X. Liu
+            <br>
+            <em>IEEE ITSC</em>, 2025
+            <br>
+            <a href="https://arxiv.org/abs/2505.03178">arXiv</a>
+            <p></p>
+            <p>
+              A simulation framework that generates statistically realistic and risk-adjustable traffic scenes using multi-agent conditional diffusion for stress testing of autonomous vehicle safety.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/terasim.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td class="paper-text-cell">
+            <a href="https://arxiv.org/abs/2503.03629">
+              <span class="papertitle">TeraSim: Uncovering Unknown Unsafe Events for Autonomous Vehicles through Generative Simulation</span>
+            </a>
+            <br>
+            Haowei Sun†, <a href="https://xintao-yan.github.io/">Xintao Yan</a>†, Zhijie Qiao†, Haojie Zhu†, Yihao Sun, <strong>Jiawei Wang</strong>, Shengyin Shen, Darian Hogue, Rajanikant Ananta, Derek Johnson, Greg Stevens, et al.
+            <br>
+            <em>Preprint</em>, 2025
+            <br>
+            <a href="https://arxiv.org/abs/2503.03629">arXiv</a> / <a href="https://github.com/mcity/TeraSim">code</a>
+            <p></p>
+            <p>
+              An open-source, high-fidelity traffic simulation platform designed to uncover unknown unsafe events and efficiently estimate AV statistical performance metrics.
+            </p>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr>
+      <td colspan="2" class="category-header default-expanded" onclick="toggleCategory('data-driven-control')">
+        <strong>Data-Driven Control and Digital-Twin Validation</strong>
+      </td>
+    </tr>
+    </tbody></table>
+
+    
+    
+    <div id="data-driven-control" class="category-papers default-expanded">
+      <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <tr>
+          <td class="paper-media-cell">
+            <img src="images/decentralized-deeplcc.png" alt="Decentralized robust data-driven predictive control" style="width:100%;max-width:100%;object-fit:contain;border-radius:5px;">
+          </td>
+          <td class="paper-text-cell">
+            <a href="https://ieeexplore.ieee.org/abstract/document/10810289">
+              <span class="papertitle">Decentralized Robust Data-Driven Predictive Control for Smoothing Mixed Traffic Flow</span>
+            </a>
+            <br>
+            <a href="https://xushang23.github.io/">Xu Shang</a>, <strong>Jiawei Wang</strong>, Yang Zheng
+            <br>
+            <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2024
+            <br>
+            <a href="https://arxiv.org/abs/2401.15826">arXiv</a>
+            <p></p>
+            <p>
+              A decentralized robust data-driven predictive control framework for CAVs to smooth mixed traffic flow while ensuring computational scalability.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/rdeeplcc.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+      <td class="paper-text-cell">
+        <a href="https://arxiv.org/abs/2411.13924">
+			<span class="papertitle">Robust Data-Driven Predictive Control for Mixed Platoons under Noise and Attacks</span>
         </a>
         <br>
-        <strong>Jiawei Wang</strong>†,
-        <a href="https://scholar.google.com/citations?user=gHcGbSgAAAAJ&hl=en">Haowei Sun</a>†,
-        <a href="https://www.civil.hku.hk/pp-yanxt.html">Xintao Yan</a>,
-        <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Shuo Feng</a>,
-        <a href="https://www.cs.toronto.edu/~jungao/">Jun Gao</a>,
-        <a href="https://traffic.engin.umich.edu/">Henry X. Liu</a>
+				Shuai Li,
+				<a href="https://www.svm.tsinghua.edu.cn/essay/80/2121.html">Chaoyi Chen</a>,
+				Haotian Zheng,
+				<strong>Jiawei Wang</strong>*,
+				Qing Xu,
+				Jianqiang Wang,
+				Keqiang Li*
         <br>
-        <em>arXiv preprint</em>, 2025
+        <em>arXiv preprint</em>, 2024
         <br>
-        <a href="https://wjiawei.com/terasim-world-web/">project page</a>
-        /
-        <a href="https://arxiv.org/abs/2509.13164">arXiv</a>
+        <a href="https://arxiv.org/abs/2411.13924">arXiv</a> / <a href="https://arxiv.org/abs/2502.16466">related publication 1</a> / <a href="https://ieeexplore.ieee.org/abstract/document/11095288">related publication 2</a>
         <p></p>
         <p>
-		An automated framework for generating safety-critical data for end-to-end autonomous driving at anywhere in the world.
+				Robust data-driven predictive control framework for mixed platoons using reachability analysis to handle noise and attacks while ensuring safety.
         </p>
       </td>
     </tr>
 
+
+     
     <tr>
-      <td style="padding:16px;width:20%;vertical-align:middle">
+      <td class="paper-media-cell">
         <video width=100% height=100% muted autoplay loop>
           <source src="images/deep-lcc-implementation.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://ieeexplore.ieee.org/abstract/document/10172912">
+      <td class="paper-text-cell">
+        <a href="https://ieeexplore.ieee.org/abstract/document/10210648">
 			<span class="papertitle">Implementation and Experimental Validation of Data-Driven Predictive Control for Dissipating Stop-and-Go Waves in Mixed Traffic</span>
         </a>
         <br>
 				<strong>Jiawei Wang</strong>, 
-				<a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Yang Zheng</a>,
-				<a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Jianghong Dong</a>,
-        <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Chaoyi Chen</a>,
-        <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Mengchi Cai</a>,
-        <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Keqiang Li</a>,
-        <a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Qing Xu</a>
+				Yang Zheng,
+				Jianghong Dong,
+        <a href="https://www.svm.tsinghua.edu.cn/essay/80/2121.html">Chaoyi Chen</a>,
+        <a href="https://www.civil.tsinghua.edu.cn/ceen/info/1062/1473.htm">Mengchi Cai</a>,
+        Keqiang Li,
+        Qing Xu
 				<br>
-        <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2024
+        <em>IEEE Internet of Things Journal</em>, 2024
         <br>
-        <a href="https://arxiv.org/abs/2203.10639">arXiv</a>
+        <a href="https://arxiv.org/abs/2204.03747">arXiv</a> / <a href="https://www.youtube.com/watch?v=ZZ2cWhapqpc&ab_channel=SOClab">video</a>
         <p></p>
         <p>
-				Implementation on miniature mixed cloud control testbed of data-driven predictive control for CAVs to dissipate stop-and-go waves in mixed traffic scenarios.
+				First experimental validation of data-driven predictive control for CAVs in dissipating traffic waves using miniature experiment platform.
         </p>
       </td>
     </tr>
 
-
     <tr>
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <img src='images/deep-lcc.png' width=100%>
+      <td class="paper-media-cell">
+        <img src='images/distributed-deeplcc.png' width=100%>
       </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="https://arxiv.org/abs/2203.10639">
-			<span class="papertitle">DeeP-LCC: Data-EnablEd Predictive Leading Cruise Control in Mixed Traffic Flow</span>
+      <td class="paper-text-cell">
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0968090X23002632">
+			<span class="papertitle">Distributed Data-Driven Predictive Control for Cooperatively Smoothing Mixed Traffic Flow</span>
         </a>
         <br>
 				<strong>Jiawei Wang</strong>,
-				<a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Yang Zheng</a>,
-				<a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Keqiang Li</a>,
-				<a href="https://scholar.google.com/citations?user=kb0Ky3QAAAAJ&hl=en">Qing Xu</a>
+				Yingzhao Lian,
+				Yuning Jiang,
+				Qing Xu,
+				Keqiang Li,
+				Colin N. Jones
         <br>
-        <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2023
+        <em>Transportation Research Part C: Emerging Technologies</em>, 2023
         <br>
-        <a href="https://arxiv.org/abs/2203.10639">arXiv</a>
+        <a href="https://arxiv.org/abs/2210.13171">arXiv</a> / <a href="https://github.com/PREDICT-EPFL/Distributed-DeeP-LCC">code</a>
         <p></p>
         <p>
-				A data-driven predictive control framework for connected and autonomous vehicles to improve traffic flow efficiency in mixed traffic scenarios.
+				A cooperative distributed data-driven predictive control framework for CAVs in large-scale mixed traffic flow.
         </p>
       </td>
     </tr>
 
-          </tbody></table>
-          
-          <table style="width:100%; margin:0 auto; border:0; border-spacing:0; padding:16px;"><tbody>
-            <tr>
-              <td>
-                <h2>Miscellanea</h2>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            
-           
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #fcb97d;">
-								 <h2>Micropapers</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:middle">
-                <a href="https://arxiv.org/abs/2112.11687">Squareplus: A Softplus-Like Algebraic Rectifier</a>
-                <br>
-                <a href="https://arxiv.org/abs/2010.09714">A Convenient Generalization of Schlick's Bias and Gain Functions</a>
-                <br>
-                <a href="https://arxiv.org/abs/1704.07483">Continuously Differentiable Exponential Linear Units</a>
-                <br>
-                <a href="https://jonbarron.info/data/cvpr2023_llm_workshop_annotated.pdf">Scholars & Big Models: How Can Academics Adapt?</a>
-              </td>
-            </tr>
+    <tr style="background-color: #fff9df;">
+      <td class="paper-media-cell">
+        <img src='images/deep-lcc.png' width=100%>
+      </td>
+      <td class="paper-text-cell">
+        <a href="https://ieeexplore.ieee.org/document/10172912">
+			<span class="papertitle">DeeP-LCC: Data-Enabled Predictive Leading Cruise Control in Mixed Traffic Flow</span>
+        </a>
+        <br>
+				<strong>Jiawei Wang</strong>,
+				Yang Zheng,
+				Keqiang Li,
+				Qing Xu
+        <br>
+        <em>IEEE Transactions on Control Systems Technology</em>, 2023
+        <br>
+        <a href="https://soc-ucsd.github.io/DeeP-LCC/">project page</a> / <a href="https://arxiv.org/abs/2203.10639">arXiv</a> / <a href="https://github.com/soc-ucsd/DeeP-LCC">code</a> / <a href="https://www.youtube.com/watch?v=ZZ2cWhapqpc&ab_channel=SOClab">video</a>
+        <p></p>
+        <p>
+				A data-driven nonparametric strategy for safe and optimal control of CAVs in mixed traffic using Willems' fundamental lemma and receding horizon optimization.
+        </p>
+      </td>
+    </tr>
 
 
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #aaba9e;">
-								 <h2>Recorded Talks</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="https://www.youtube.com/watch?v=hFlF33JZbA0">Radiance Fields and the Future of Generative Media, 2025</a><br>				  
-                <a href="https://www.youtube.com/watch?v=h9vq_65eDas">View Dependent Podcast, 2024</a><br>
-                <a href="https://www.youtube.com/watch?v=4tDhYsFuEqo">Bay Area Robotics Symposium, 2023
-</a><br>
-                <a href="https://youtu.be/TvWkwDYtBP4?t=7604">EGSR Keynote, 2021</a><br>
-				<a href="https://www.youtube.com/watch?v=nRyOzHpcr4Q">TUM AI Lecture Series, 2020</a><br>
-				<a href="https://www.youtube.com/watch?v=HfJpQCBTqZs">Vision & Graphics Seminar at MIT, 2020</a>
-              </td>
-            </tr>
 
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #c6b89e;">
-								 <h2>Academic Service</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="https://iccv.thecvf.com/">Lead Area Chair, ICCV 2025</a>
-                <br>
-                <a href="https://cvpr.thecvf.com/Conferences/2025/Organizers">Lead Area Chair, CVPR 2025</a>
-                <br>
-                <a href="https://cvpr.thecvf.com/Conferences/2024/Organizers">Area Chair, CVPR 2024</a>
-                <br>
-                <a href="https://cvpr2023.thecvf.com/Conferences/2023/Organizers">Demo Chair, CVPR 2023</a>
-                <br>
-                <a href="https://cvpr2022.thecvf.com/area-chairs">Area Chair, CVPR 2022</a>
-                <br>
-                <a href="http://cvpr2021.thecvf.com/area-chairs">Area Chair & Award Committee Member, CVPR 2021</a>
-                <br>
-                <a href="http://cvpr2019.thecvf.com/area_chairs">Area Chair, CVPR 2019</a>
-                <br>
-                <a href="http://cvpr2018.thecvf.com/organizers/area_chairs">Area Chair, CVPR 2018</a>
-              </td>
-            </tr>
-						
-						
-           
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #edd892;">
-								 <h2>Teaching</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="http://inst.eecs.berkeley.edu/~cs188/sp11/announcements.html">Graduate Student Instructor, CS188 Spring 2011</a>
-                <br>
-                <a href="http://inst.eecs.berkeley.edu/~cs188/fa10/announcements.html">Graduate Student Instructor, CS188 Fall 2010</a>
-                <br>
-                <a href="http://aima.cs.berkeley.edu/">Figures, "Artificial Intelligence: A Modern Approach", 3rd Edition</a>
-              </td>
-            </tr>
-            
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:0px">
-                <br>
-                <p style="text-align:right;font-size:small;">
-                  Feel free to steal this website's <a href="https://github.com/jonbarron/jonbarron_website">source code</a>. <strong>Do not</strong> scrape the HTML from this page itself, as it includes analytics tags that you do not want on your own website &mdash; use the github code instead. Also, consider using <a href="https://leonidk.com/">Leonid Keselman</a>'s <a href="https://github.com/leonidk/new_website">Jekyll fork</a> of this page.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+    <tr>
+      <td class="paper-media-cell">
+        <video width=100% height=100% muted autoplay loop>
+          <source src="images/mcct.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td class="paper-text-cell">
+        <a href="https://ieeexplore.ieee.org/abstract/document/10040234">
+			<span class="papertitle">Mixed Cloud Control Testbed: Validating Vehicle-Road-Cloud Integration via Mixed Digital Twin</span>
+        </a>
+        <br>
+				Jianghong Dong,
+				Qing Xu,
+				<strong>Jiawei Wang</strong>*,
+				Chunying Yang,
+				<a href="https://www.civil.tsinghua.edu.cn/ceen/info/1062/1473.htm">Mengchi Cai</a>,
+				<a href="https://www.svm.tsinghua.edu.cn/essay/80/2121.html">Chaoyi Chen</a>,
+				Yu Liu,
+				Jianqiang Wang,
+				Keqiang Li
+        <br>
+        <em>IEEE Transactions on Intelligent Vehicles</em>, 2023
+        <br>
+        <a href="https://github.com/dongjh20/MCCT/tree/main">project page</a>
+        /
+        <a href="https://arxiv.org/abs/2212.02007">arXiv</a>
+        <p></p>
+        <p>
+				A miniature experimental platform MCCT based on Mixed Digital Twin concept for validating multi-vehicle cooperation and vehicle-road-cloud integration.
+        </p>
+      </td>
+    </tr>
+      </tbody></table>
+    </div>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr>
+      <td colspan="2" class="category-header default-expanded" onclick="toggleCategory('mixed-traffic')">
+        <strong>Principled Understanding of Mixed Traffic</strong>
+      </td>
+    </tr>
+    </tbody></table>
+    
+    <div id="mixed-traffic" class="category-papers default-expanded">
+      <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <tr style="background-color: #fff9df;">
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/lcc.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+            </video>
+      </td>
+          <td class="paper-text-cell">
+            <a href="https://ieeexplore.ieee.org/abstract/document/9570137">
+              <span class="papertitle">Leading Cruise Control in Mixed Traffic Flow: System Modeling, Controllability, and String Stability</span>
+        </a>
+        <br>
+            <strong>Jiawei Wang</strong>,
+            Yang Zheng,
+            <a href="https://www.svm.tsinghua.edu.cn/essay/80/2121.html">Chaoyi Chen</a>,
+            Qing Xu,
+            Keqiang Li
+            <br>
+            <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2022
+            <br>
+            <a href="https://soc-ucsd.github.io/LCC/#/README">project page</a>
+            /
+            <a href="https://arxiv.org/abs/2012.04313">arXiv</a>
+            /
+            <a href="https://github.com/soc-ucsd/LCC">code</a>
+        <p></p>
+        <p>
+              A novel Leading Cruise Control (LCC) framework for CAVs to actively lead the motion of the vehicles behind, while maintaining the car-following operations to the vehicles ahead. 
+        </p>
+      </td>
+    </tr>
+	
+        <tr>
+          <td class="paper-media-cell">
+            <video width=100% height=100% muted autoplay loop>
+              <source src="images/formation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+            </video>
+    </td>
+          <td class="paper-text-cell">
+            <a href="https://ieeexplore.ieee.org/abstract/document/9709187">
+              <span class="papertitle">Cooperative Formation of Autonomous Vehicles in Mixed Traffic Flow: Beyond Platooning</span>
+      </a>
+      <br>
+            Keqiang Li†,
+            <strong>Jiawei Wang</strong>†,
+            Yang Zheng
+            <br>
+            <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2022
+            <br>
+            <a href="https://soc-ucsd.github.io/mixed-traffic/">project page</a>
+            /
+            <a href="https://arxiv.org/abs/2009.04254">arXiv</a>
+            /
+            <a href="https://github.com/soc-ucsd/mixed-traffic">code</a>
+      <p></p>
+      <p>
+              Investigation of CAV formation patterns in mixed traffic from set-function optimization perspective, revealing optimal formations beyond platooning for system-level traffic benefits.
+      </p>
+    </td>
+  </tr>
+  <tr style="background-color: #fff9df;">
+    <td class="paper-media-cell">
+      <video width=100% height=100% muted autoplay loop>
+        <source src="images/controllability.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+      </video>
+</td>
+    <td class="paper-text-cell">
+      <a href="https://ieeexplore.ieee.org/abstract/document/9127876">
+        <span class="papertitle">Controllability Analysis and Optimal Control of Mixed Traffic Flow with Human-Driven and Autonomous Vehicles</span>
+</a>
+<br>
+      <strong>Jiawei Wang</strong>,
+      Yang Zheng,
+      Qing Xu,
+      Jianqiang Wang,
+      Keqiang Li
+      <br>
+      <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2021
+      <br>
+      <a href="https://soc-ucsd.github.io/mixed-traffic/">project page</a>
+      /
+      <a href="https://arxiv.org/abs/2002.02099">arXiv</a>
+      /
+      <a href="https://github.com/soc-ucsd/mixed-traffic">code</a>
+<p></p>
+<p>
+        First rigorous proof of controllability and stabilizability properties of mixed traffic systems via CAVs with heterogeneous human-driven vehicles.
+</p>
+</td>
+</tr>
+
+  <tr>
+    <td class="paper-media-cell">
+      <img src="images/mixed-intersection.png" alt="Mixed intersection control" style="width:100%;max-width:100%;object-fit:contain;border-radius:5px;">
+    </td>
+    <td class="paper-text-cell">
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0968090X2100156X">
+        <papertitle><strong>Mixed platoon control of automated and human-driven vehicles at a signalized intersection: Dynamical analysis and optimal control</strong></papertitle>
+      </a>
+      <br>
+      <a href="https://www.svm.tsinghua.edu.cn/essay/80/2121.html">Chaoyi Chen</a>, <strong>Jiawei Wang</strong>, Qing Xu, Jianqiang Wang, Keqiang Li
+      <br>
+      <em>Transportation Research Part C: Emerging Technologies</em>, 2021
+      <br>
+      <a href="https://arxiv.org/abs/2010.16105">arXiv</a>
+      <p></p>
+      <p>
+              Proposes "1+n" control framework for CAV control at signalized intersections in mixed traffic, enabling the CAVs to significantly improve the traffic energy efficiency at a low penetration rate.
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="paper-media-cell">
+      <img src="images/smoothing.png" alt="Smoothing traffic flow via control of autonomous vehicles" style="width:100%;max-width:100%;object-fit:contain;border-radius:5px;">
+    </td>
+    <td class="paper-text-cell">
+      <a href="https://ieeexplore.ieee.org/abstract/document/8957685">
+        <span class="papertitle">Smoothing Traffic Flow via Control of Autonomous Vehicles</span>
+      </a>
+      <br>
+      Yang Zheng, <strong>Jiawei Wang</strong>, Keqiang Li
+      <br>
+      <em>IEEE Internet of Things Journal</em>, 2020
+      <br>
+      <a href="https://soc-ucsd.github.io/mixed-traffic/">project page</a> / <a href="https://arxiv.org/abs/1812.09544">arXiv</a> / <a href="https://github.com/soc-ucsd/mixed-traffic">code</a>
+      <p></p>
+      <p>
+              First rigorous theoretical analysis of controllability, stabilizability, and reachability of mixed traffic systems, showing that CAVs can effectively improve traffic with only 5% penetration rate.
+      </p>
+    </td>
+  </tr>
+
+      </tbody></table>
+    </div>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr>
+        <td style="padding:5px;width:100%;vertical-align:middle">
+          <br>
+        </td>
+      </tr>
+    </tbody></table>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr>
+        <td style="padding:16px;width:100%;vertical-align:middle">
+          <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Teaching</heading>
+          <ul style="margin:0;padding-left:20px;margin-top:10px;margin-bottom:0;">
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Instructor:</strong> CEE 551: Traffic Science, 2025.</li>
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Teaching Assistant:</strong> Vehicle Control Engineering, 2020; Calculus, 2020.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody></table>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr>
+        <td style="padding:16px;width:100%;vertical-align:middle">
+          <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Service</heading>
+          <ul style="margin:0;padding-left:20px;margin-top:10px;margin-bottom:0;">
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Reviewer for Journal:</strong> 
+              IEEE Transactions on Intelligent Transportation Systems; Transportation Research Part C Emerging Technologies; IEEE Internet of Things Journal; IEEE Transactions on Transportation Electrification; IEEE Transactions on Intelligent Vehicles; IEEE Transactions on Control Systems Technology; IEEE Transactions on Control of Network Systems; IEEE Transactions on Vehicular Technology; IEEE Transactions on Consumer Electronics; Scientific Reports; IEEE/CAA Journal of Automatica Sinica; Transportation Science; Accident Analysis and Prevention; IET Intelligent Transport Systems; Automotive Innovation; Optimal Control, Applications and Methods; International Journal of Systems Science; Asian Journal of Control; ACM Transactions on Cyber-Physical Systems; Journal of the Franklin Institute; Chinese Journal of Mechanical Engineering; Sensors; World Electric Vehicle Journal.</li>
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Reviewer for Conference:</strong> IEEE Conference on Decision and Control (CDC); IFAC World Congress (IFAC); American Control Conference (ACC); IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS); International Symposium on Transportation and Traffic Theory (ISTTT); TRB Annual Meeting; Learning for Dynamics and Control (L4DC); IEEE International Conference on Intelligent Transportation (ITSC); IEEE Intelligent Vehicles Symposium (IV); ACM/IEEE International Conference on Cyber-Physical Systems (ICCPS); COTA International Conference for Transportation Professionals (CICTP); ITS World Congress (ITSW); Modeling, Estimation and Control Conference (MECC).</li>
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Editorial Assistant:</strong> Journal of Intelligent Transportation Systems.</li>
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Organizer:</strong> <a href="https://mcity.umich.edu/av-challenge/setup/">Mcity AV Challenge</a>.</li>
+            <li style="margin-bottom:8px;margin-top:0;"><strong>Demonstrator:</strong> Autonomous Driving Demonstration at Tsinghua University, 2018-2020.</li>
+            <li style="margin-bottom:0;margin-top:0;"><strong>Volunteer:</strong> 14th International Symposium on Advanced Vehicle Control (AVEC).</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody></table>
+    
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr>
+        <td style="padding:16px;width:100%;vertical-align:middle">
+          <heading style="margin-bottom:15px;margin-top:20px;text-align:left;font-size:20px;font-weight:bold;color:#333">Selected Awards & Scholarships</heading>
+          <ul style="margin:0;padding-left:20px;margin-top:10px;margin-bottom:0;">
+            <li style="margin-bottom:8px;margin-top:0;">2024, <span style="color:red;">Beijing Outstanding Doctoral Dissertation Award</span></li>
+            <li style="margin-bottom:8px;margin-top:0;">2023, <span style="color:red;">Distinguished Doctoral Dissertation Award, China Society of Automotive Engineers</span></li>
+            <li style="margin-bottom:8px;margin-top:0;">2023, <span style="color:red;">Outstanding Ph.D. Graduate, Tsinghua University</span></li>
+            <li style="margin-bottom:8px;margin-top:0;">2023, <span style="color:red;">Excellent Doctoral Dissertation Award, Tsinghua University</span></li>
+            <li style="margin-bottom:8px;margin-top:0;">2022, National Scholarship, Tsinghua University</li>
+            <li style="margin-bottom:8px;margin-top:0;">2020, National Scholarship, Tsinghua University</li>
+            <li style="margin-bottom:8px;margin-top:0;">2018, Best Paper Award in the 18th COTA International Conference for Transportation Professionals (CICTP)</li>
+            <li style="margin-bottom:8px;margin-top:0;">2016, Outstanding Student Leader Award, Tsinghua University</li>
+            <li style="margin-bottom:8px;margin-top:0;">2015, Outstanding Volunteer Scholarship, Tsinghua University</li>
+            <li style="margin-bottom:8px;margin-top:0;">2015, National Scholarship, Tsinghua University (Top 1 undergraduate in year 1)</li>
+          </ul>
+</td>
+</tr>
+    </tbody></table>
+
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <tr>
+        <td style="padding:0px">
+          <br>
+          <p style="text-align:right;font-size:small;">
+            Design and source code from <a href="https://github.com/jonbarron/jonbarron_website">here</a>. 
+          </p>
+        </td>
+      </tr>
+    </tbody></table>
         </td>
       </tr>
     </table>
+    <script src="js/category-toggle.js"></script>
   </body>
 </html>
